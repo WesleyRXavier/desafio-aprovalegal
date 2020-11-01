@@ -14,4 +14,10 @@ protected $table = 'setores';
         'descricao'
 
     ];
+
+    public function empresas(){
+
+       return $this->belongsToMany(Empresa::class,'empresas_setores','setorId','empresaId');
+
+    }
 }

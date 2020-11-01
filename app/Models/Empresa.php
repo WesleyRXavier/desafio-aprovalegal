@@ -14,4 +14,10 @@ class Empresa extends Model
         'nomeFantasia',
         'cnpj'
     ];
+
+
+    public function setores(){
+
+        return $this->belongsToMany(Setor::class,'empresas_setores','empresaId','setorId');
+    }
 }

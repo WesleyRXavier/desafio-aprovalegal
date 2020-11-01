@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('empresas', EmpresaController::class);
+Route::resource('setores', SetorController::class);
+Route::resource('funcionarios', FuncionarioController::class);
+
+
+Route::get('/e', function () {
+    \App\Models\Empresa::factory()->count(4)->create();
+});
+Route::get('/s', function () {
+    \App\Models\Setor::factory()->count(4)->create();
+});
+
+Route::get('/f', function () {
+    \App\Models\Funcionario::factory()->count(4)->create();
+});
+Route::get('/d', function () {
+    \App\Models\Documento::factory()->count(4)->create();
+});
+
+

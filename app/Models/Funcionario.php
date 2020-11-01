@@ -14,4 +14,10 @@ class Funcionario extends Model
         'email',
         'cpf'
     ];
+
+    public function setores(){
+
+        return $this->belongsToMany(Setor::class,'setores_funcionarios','funcionarioId','setorId');
+
+     }
 }
