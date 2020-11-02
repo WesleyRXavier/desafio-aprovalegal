@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Funcionario extends Model
 {
     use HasFactory;
+    protected $table = 'funcionarios';
 
     protected $fillable = [
         'nome',
@@ -17,7 +18,7 @@ class Funcionario extends Model
 
     public function setores(){
 
-        return $this->belongsToMany(Setor::class,'setores_funcionarios','funcionarioId','setorId');
+        return $this->belongsToMany(Setor::class,'setores_funcionarios','funcionarioId', 'setorId');
 
      }
 }

@@ -81,7 +81,8 @@ class FuncionarioController extends Controller
     public function edit($id)
     {
         $setores = DB::table('setores')->orderBy('sigla', 'asc')->get();
-        $funcionario = DB::table('funcionarios')->where('id', $id)->first();
+        $funcionario = Funcionario::where('id', $id)->first();
+        // dd($funcionario->setores);
         return view('funcionarios.edit', ['funcionario' => $funcionario, 'setores' => $setores]);
 
     }

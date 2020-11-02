@@ -23,9 +23,9 @@ class EmpresaFactory extends Factory
     public function definition()
     {
         return [
-            'razaoSocial' => $this->faker->name,
-            'nomeFantasia' => $this->faker->name,
-            'cnpj' => $this->faker->randomNumber($nbDigits = NULL, $strict = false)
+            'razaoSocial' => $this->faker->company,
+            'nomeFantasia' => $this->faker->company,
+            'cnpj' => $this->faker->cnpj//randomNumber($nbDigits = NULL, $strict = false)
 
         ];
     }

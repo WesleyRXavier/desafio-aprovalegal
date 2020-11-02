@@ -23,8 +23,8 @@ class SetorFactory extends Factory
     public function definition()
     {
         return [
-            'sigla' => $this->faker->text($maxNbChars = 5),
-            'descricao' => $this->faker->name
+            'sigla' => $this->faker->jobTitle,
+            'descricao' => $this->faker->text
 
 
         ];

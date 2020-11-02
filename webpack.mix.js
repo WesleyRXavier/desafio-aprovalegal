@@ -15,7 +15,6 @@ mix
 //.js('resources/js/app.js', 'public/js')
 //  .sass('resources/sass/app.scss', 'public/css');
 
-
     .js('node_modules/jquery/dist/jquery.min.js', 'public/js/jquey.min.js')
 
 .js('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', 'public/js/bootstrap.js')

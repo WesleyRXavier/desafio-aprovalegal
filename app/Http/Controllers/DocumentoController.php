@@ -98,9 +98,9 @@ class DocumentoController extends Controller
     public function destroy($id)
     {
         $documento = Documento::where('id', $id)->first();
-      //  dd($documento->fluxos);
+
         if ($documento) {
-          //  $documento->fluxos()->detach($documento->fluxos);
+
 
             Storage::delete($documento->url);
             $documento->delete();

@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label for="cpf">CPF:</label>
                     <input type="cpf" class="form-control" name="cpf" id="cpf" placeholder="cpf"
-                        autocomplete="off" value="{{old('cpf')?? $funcionario->cpf}}">
+                        autocomplete="off" maxlength="14" value="{{old('cpf')?? $funcionario->cpf}}">
                     @if ($errors->has('cpf'))
                         <small id="cpfErro"
                             class="form-text text-muted alert-danger">{{ $errors->first('cpf') }}</small>
@@ -45,8 +45,9 @@
                       <div class="form-group">
                         @foreach ($setores as $setor)
                         <label class="label">
-                            <input type="checkbox" name="setores[]" value="{{ $setor->id }}
-                           " {{ in_array($setor->id, old('setores', [])) ? 'checked' : '' }}><span>{{ $setor->sigla  }}</span>
+                            <input type="checkbox" name="setores[]" value="{{ $setor->id }}"
+                            {{(in_array($setor->id, old("setores") ?: []) ? "checked" :(
+                            $funcionario->setores->contains($setor->id) ? 'checked' : '' ))}}>{{ $setor->sigla }}</span>
                         </label>
                         &nbsp
                         @endforeach

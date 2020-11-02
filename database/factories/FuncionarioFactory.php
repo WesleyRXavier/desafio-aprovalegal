@@ -25,7 +25,7 @@ class FuncionarioFactory extends Factory
         return [
             'nome' => $this->faker->name,
             'email' => $this->faker->safeEmail,
-            'cpf' => $this->faker->randomNumber($nbDigits = NULL, $strict = false)
+            'cpf' => $this->faker->cpf//randomNumber($nbDigits = NULL, $strict = false)
 
 
         ];

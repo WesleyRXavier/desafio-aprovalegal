@@ -78,7 +78,7 @@ class SetorController extends Controller
     public function edit($id)
     {
         $empresas = DB::table('empresas')->orderBy('razaoSocial', 'asc')->get();
-        $setor = DB::table('setores')->where('id', $id)->first();
+        $setor = Setor::where('id', $id)->first();
         return view('setores.edit', ['setor' => $setor, 'empresas' => $empresas]);
 
     }
