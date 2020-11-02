@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::resource('empresas', EmpresaController::class);
 Route::resource('setores', SetorController::class);
 Route::resource('funcionarios', FuncionarioController::class);
+Route::resource('documentos', DocumentoController::class);
+Route::resource('fluxos', FluxoController::class);
+Route::get('fluxos/addFluxo/{id}', 'FluxoController@addFluxo')->name('fluxos.addFluxo');
 
 
 Route::get('/e', function () {

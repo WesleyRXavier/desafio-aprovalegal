@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label for="cpf">CPF:</label>
                     <input type="cpf" class="form-control" name="cpf" id="cpf" placeholder="cpf"
-                        autocomplete="off" value="{{ old('cpf') }}">
+                        autocomplete="off" maxlength="14" value="{{ old('cpf') }}  ">
                     @if ($errors->has('cpf'))
                         <small id="cpfErro"
                             class="form-text text-muted alert-danger">{{ $errors->first('cpf') }}</small>

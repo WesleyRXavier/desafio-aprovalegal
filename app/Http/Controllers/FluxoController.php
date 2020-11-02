@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EmpresaRequest;
+use App\Http\Requests\FluxoRequest;
+use App\Models\Documento;
+use App\Models\Fluxo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Empresa;
 
-class EmpresaController extends Controller
+class FluxoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,7 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $empresas = DB::table('empresas')->orderBy('created_at', 'desc')->simplePaginate(5);
-        return view('empresas.index', ['empresas' => $empresas]);
+
     }
 
     /**
@@ -25,10 +25,9 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-
-        return view('empresas.create');
+        //
     }
 
     /**
@@ -37,13 +36,12 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmpresaRequest $request)
+    public function store(FluxoRequest $request)
     {
-
         $dados = $request->all();
-        $empresa = Empresa::create($dados);
-        return redirect('empresas')->with('success', 'Empresa cadastrada com sucesso!');
-
+        $fluxo = Fluxo::create($dados);
+        return redirect()->route('fluxos.show', [$request->documentoId])
+        ->with('success', 'Novo Fluxo cadastrado para documento ' . $request->documento);
     }
 
     /**
@@ -54,8 +52,10 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
-        $empresa = DB::table('empresas')->where('id',$id)->first();
-        return view('empresas.show', ['empresa' => $empresa]);
+        $documento = DB::table('documentos')->where('id', $id)->first();
+        $fluxos = DB::table('fluxos')->where('documentoId', $id)->orderBy('created_at', 'desc')->simplePaginate(5);
+
+        return view('fluxos.show', ['fluxos' => $fluxos, 'documento' => $documento]);
     }
 
     /**
@@ -66,8 +66,7 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
-        $empresa = DB::table('empresas')->where('id',$id)->first();
-        return view('empresas.edit', ['empresa' => $empresa]);
+        //
     }
 
     /**
@@ -77,14 +76,9 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EmpresaRequest $request, $id)
+    public function update(Request $request, $id)
     {
-
-        $empresa = Empresa::where('id', $id)->first();
-        $empresa->fill($request->all());
-        $empresa->save();
-        return redirect('empresas')->with('success', 'Empresa atualizada com sucesso!');
-
+        //
     }
 
     /**
@@ -95,10 +89,19 @@ class EmpresaController extends Controller
      */
     public function destroy($id)
     {
-        $empresa = Empresa::where('id', $id)->first();
-        $empresa->setores()->detach($empresa->setores);
-        $empresa->delete();
+        $fluxo = Fluxo::where('id', $id)->first();
+        $fluxo->delete();
 
-        return redirect('empresas')->with('success', 'Empresa excluida com sucesso!');
+        return redirect()->back()->with('success', 'Fluxo excluido com sucesso');
+    }
+
+    public function addFluxo($id)
+    {
+
+        $documento = DB::table('documentos')->where('id', $id)->first();
+        $setores = DB::table('setores')->orderBy('sigla', 'asc')->get();
+        $funcionarios = DB::table('funcionarios')->orderBy('nome', 'asc')->get();
+
+        return view('fluxos.create', ['documento' => $documento, 'setores' => $setores, 'funcionarios' => $funcionarios]);
     }
 }

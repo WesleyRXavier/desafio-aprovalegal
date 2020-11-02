@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label for="cnpj">CNPJ:</label>
-                    <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ" autocomplete="off"
+                    <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ" maxlength="17"
                         value="{{ old('cnpj') }}">
                 </div>
                 <div>

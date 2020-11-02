@@ -18,8 +18,8 @@ class CreateSetoresFuncionarios extends Migration
             $table->unsignedBiginteger('setorId');
             $table->unsignedBiginteger('funcionarioId');
             $table->timestamps();
-            $table->foreign('setorId')->references('id')->on('setores')->Delete('cascade');
-            $table->foreign('funcionarioId')->references('id')->on('funcionarios')->Delete('cascade');
+            $table->foreign('setorId')->references('id')->on('setores')->onDelete('cascade');
+            $table->foreign('funcionarioId')->references('id')->on('funcionarios')->onDelete('cascade');
         });
     }
 

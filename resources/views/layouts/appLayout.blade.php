@@ -26,7 +26,7 @@
               <a class="nav-link" href="{{route('funcionarios.index')}}">Funcionarios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Documentos</a>
+                <a class="nav-link" href="{{ route('documentos.index') }}">Documentos</a>
               </li>
 
           </ul>

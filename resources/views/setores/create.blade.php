@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição:</label>
-                    <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Nome Fantasia"
+                    <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Descriçao"
                         autocomplete="off" value="{{ old('descricao') }}">
                     @if ($errors->has('descricao'))
                         <small id="descricaoErro"

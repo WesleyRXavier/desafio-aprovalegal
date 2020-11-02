@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FuncionarioRequest extends FormRequest
+class DocumentoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class FuncionarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'=>'required|min:3|max:191|unique:funcionarios,nome,' . $this->funcionario,
-            'email'=>'required|email|max:191|unique:funcionarios,email,' . $this->funcionario,
-            'cpf'=>'required|min:11|max:14|unique:funcionarios,cpf,' . $this->funcionario,
+            'codigo' => 'required|max:10',
+            'arquivo' => 'required|mimes:pdf|max:2048'
 
         ];
     }
@@ -35,9 +34,8 @@ class FuncionarioRequest extends FormRequest
 
         return  [
             'required' => '   :attribute obrigatorio.',
-            'min' => ' O campo de ter no minimo :min caracteres.',
-            'max' => ' O campo de ter no maximo :max caracteres.',
-            'unique' => ' Este :attribute ja esta em uso.',
+            'mimes' => '   :attribute formato invalido.',
+            'max' => '   :attribute Tamanho Excedido.'
 
         ];
 

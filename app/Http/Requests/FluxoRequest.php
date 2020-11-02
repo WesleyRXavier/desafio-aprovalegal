@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FuncionarioRequest extends FormRequest
+class FluxoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,12 @@ class FuncionarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'=>'required|min:3|max:191|unique:funcionarios,nome,' . $this->funcionario,
-            'email'=>'required|email|max:191|unique:funcionarios,email,' . $this->funcionario,
-            'cpf'=>'required|min:11|max:14|unique:funcionarios,cpf,' . $this->funcionario,
-
+            'documento'=>'required',
+            'setorOrigem'=>'required',
+            'setorDestino'=>'required|different:setorOrigem',
+            'funcOrigem'=>'required',
+            'funcDestino'=>'required|different:funcOrigem',
+            'status'=>'required|in:Andamento,Finalizado',
         ];
     }
 
@@ -35,9 +37,7 @@ class FuncionarioRequest extends FormRequest
 
         return  [
             'required' => '   :attribute obrigatorio.',
-            'min' => ' O campo de ter no minimo :min caracteres.',
-            'max' => ' O campo de ter no maximo :max caracteres.',
-            'unique' => ' Este :attribute ja esta em uso.',
+            'different' => '   :attribute deve ser diferente da Origem.'
 
         ];
 

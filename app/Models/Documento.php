@@ -9,10 +9,16 @@ class Documento extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'codigo',
         'nomeOriginal',
         'url'
 
     ];
+
+    public function fluxos()
+    {
+        return $this->hasMany(Fluxo::class,'documentoId','id');
+    }
 
 
 }

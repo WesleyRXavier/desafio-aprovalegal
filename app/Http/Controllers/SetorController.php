@@ -112,6 +112,7 @@ class SetorController extends Controller
     {
         $setor = Setor::where('id', $id)->first();
         $setor->empresas()->detach($setor->empresas);
+        $setor->funcionarios()->detach($setor->funcionarios);
         $setor->delete();
         return redirect('setores')->with('success', 'Setor excluido com sucesso!');
     }

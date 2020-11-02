@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EmpresaRequest extends FormRequest
 {
@@ -16,7 +17,6 @@ class EmpresaRequest extends FormRequest
         return true;
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,24 +24,27 @@ class EmpresaRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->empresa);
+
         return [
-            'razaoSocial'=>'required|min:3|max:191',
-            'nomeFantasia'=>'required|min:3|max:191',
-            'cnpj'=>'required',
+            'razaoSocial' => 'required|min:3|max:191',
+            'nomeFantasia' => 'required|min:3|max:191',
+            'cnpj' => 'required|min:14|unique:empresas,cnpj,' . $this->empresa
+
+
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
 
-        return  [
+        return [
             'required' => '   :attribute obrigatorio.',
             'min' => ' O campo de ter no minimo :min caracteres.',
             'max' => ' O campo de ter no maximo :max caracteres.',
-            'unique' => ' Este CNPJ ja esta em uso.',
-
+            'unique' => ' Este :attribute ja esta em uso.',
 
         ];
-
 
     }
 }

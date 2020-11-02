@@ -18,8 +18,8 @@ class CreateEmpresasSetores extends Migration
             $table->unsignedBiginteger('empresaId');
             $table->unsignedBiginteger('setorId');
             $table->timestamps();
-            $table->foreign('empresaId')->references('id')->on('empresas')->Delete('cascade');
-            $table->foreign('setorId')->references('id')->on('setores')->Delete('cascade');
+            $table->foreign('empresaId')->references('id')->on('empresas')->onDelete('cascade');
+            $table->foreign('setorId')->references('id')->on('setores')->onDelete('cascade');
         });
     }
 
